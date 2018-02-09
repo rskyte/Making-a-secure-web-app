@@ -31,6 +31,6 @@ class App
   end
 
   def current_user request
-    user = User.find({"id" => request.get_cookie("user-id")}) if request.has_cookie?
+    user = User.find_first({"id" => request.get_cookie("user-id")}) if request.has_cookie?
   end
 end

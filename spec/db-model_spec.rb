@@ -19,7 +19,7 @@ describe DBModel do
       DBConnect.stub(access_database: nil)
       expect(DBConnect).to receive(:access_database)
         .with("insert into testdbmodels(username) values('username');")
-      testdbmodel.create({'username': 'username'})
+      testdbmodel.create({'username' => 'username'})
     end
   end
 
@@ -27,15 +27,23 @@ describe DBModel do
     it "can find a specific record in database" do
       expect(DBConnect).to receive(:access_database)
         .with "select * from testdbmodels where username = 'username';"
-      testdbmodel.find({'username' => 'username'})
+      testdbmodel.find_first({'username' => 'username'})
     end
 
     it "can return a specific record in database" do
       allow(DBConnect).to receive(:access_database)
         .with("select * from testdbmodels where username = 'username';")
           .and_yield([{"username" => "username"}])
-      result = testdbmodel.find({'username': 'username'})
+      result = testdbmodel.find_first({'username' => 'username'})
       expect(result.username).to eq "username"
+    end
+
+    it "can return all records satisfying a certain query in database" do
+      allow(DBConnect).to receive(:access_database)
+        .with("select * from testdbmodels where username = 'username';")
+          .and_yield([{"username" => "username"}, {"username" => "username"}])
+      result = testdbmodel.find_all({'username' => 'username'})
+      expect(result.length).to eq 2
     end
 
     it "can return all records in a table" do

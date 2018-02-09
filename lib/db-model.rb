@@ -17,6 +17,11 @@ module DBModel
       .map{ |var| extract_attribute_to_string(var) }.join(", ")
     DBConnect.access_database("update #{self.class.tablename} set #{data} where id = #{id};")
   end
+
+  # def get_relations(relation-name)
+  #   self.relation-name = eval(relation-name.capitalize).all
+  # end
+
 private
   def extract_attribute_to_string attribute
     var = attribute.to_s[1..-1].to_sym
@@ -37,12 +42,18 @@ module DBModelClass
     separate_params(params) do |keys, data|
       DBConnect.access_database("insert into #{tablename}(#{keys}) values(#{data});")
     end
-    self.find(params)
+    self.find_first(params)
   end
 
-  def find(params)
+  def find_first(params)
     DBConnect.access_database("select * from #{tablename} where #{query(params)};") do |result|
       self.new(result[0])
+    end
+  end
+
+  def find_all(params)
+    DBConnect.access_database("select * from #{tablename} where #{query(params)};") do |result|
+      result.map{ |record| self.new(record) }
     end
   end
 
