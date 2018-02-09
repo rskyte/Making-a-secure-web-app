@@ -13,6 +13,6 @@ RSpec.configure do |config|
 	config.around(:each) do |example|
 		example.run
 		DBConnect.access_database('truncate table users cascade;')
-		# access_database('truncate table posts cascade;')
+		DBConnect.access_database('truncate table posts cascade;')
 	end
 end

@@ -1,4 +1,5 @@
 require_relative './lib/user'
+require_relative './lib/post'
 require_relative './lib/templating_engine'
 
 class App
@@ -33,6 +34,7 @@ class App
     unless request.has_cookie?
       return redirect('/users/signin')
     end
+    @posts = Post.all.reverse
     @username = current_user(request).username if current_user(request)
     herb('public/posts.html')
   end
@@ -48,6 +50,15 @@ class App
 
   def get_users_signout request
     redirect('/users/signin', "user-id=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT")
+  end
+
+  def post_posts request
+    post = Post.create("content" => request.get_param("post-content"), "user_id" => current_user(request).id)
+    redirect('/posts')
+  end
+
+  def get_allposts request
+    Post.all.map{|post|{content: post.content, user: User.find_first({'id' => post.user_id}).username} }.to_json
   end
 
   private
