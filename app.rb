@@ -31,19 +31,24 @@ class App
     unless request.has_cookie?
       return redirect('/users/signin')
     end
-    @posts = Post.all
+    @posts = Post.all.reverse
     @username = current_user(request).username if current_user(request)
     herb('public/posts.html')
   end
 
   def post_users request
     user = User.create("username" => request.get_param("username"))
+    p "user = " + user.inspect
     login user, redirect('/')
   end
 
   def post_posts request
     post = Post.create("content" => request.get_param("post-content"), "user_id" => current_user(request).id)
     redirect('/posts')
+  end
+
+  def get_allposts request
+    Post.all.map{|post|{content: post.content, user: User.find_first({'id' => post.user_id}).username} }.to_json
   end
 
   private

@@ -20,6 +20,7 @@ class Server
     while(true) do
       Thread.start(@server.accept) do |socket|
         begin
+          puts "Request"
           request = Request.new(socket.recv(4096))
           request.generate_hashes
           #pp(request)
@@ -29,11 +30,13 @@ class Server
           res = middleware.get_response(request)
 
           socket.print(res.build)
+          puts "close request"
           socket.close
         rescue Exception => error
           puts "Error: " + error.to_s
           puts error.backtrace
           socket.print middleware.error.build
+          puts "close request"
           socket.close
         end 
       end
