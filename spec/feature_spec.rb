@@ -33,7 +33,14 @@ feature "Served pages" do
 	scenario "user can visit signin page" do
 		visit '/users/signin'
 		expect(page).to have_content "Sign In"
+	end
 
+	scenario "User can signin to their existing account" do
+		User.create("username" => "testuser")
+		visit '/users/signin'
+		fill_in 'username', with: "testuser"
+		click_on 'sign-in'
+		expect(page).to have_content 'Welcome testuser'
 	end
 
   scenario "User visits non-existant page" do
