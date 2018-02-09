@@ -39,6 +39,15 @@ class App
     herb('public/posts.html')
   end
 
+  def get_allposts request
+    Post.all.map{|post|{content: post.content, user: User.find_first({'id' => post.user_id}).username} }.to_json
+  end
+
+  def post_posts request
+    post = Post.create("content" => request.get_param("post-content"), "user_id" => current_user(request).id)
+    redirect('/posts')
+  end
+
   def post_users request
     if request.get_param("password") == request.get_param("password-conf")
       user = User.create("username" => request.get_param("username"),

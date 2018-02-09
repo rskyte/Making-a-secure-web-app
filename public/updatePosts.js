@@ -18,7 +18,7 @@ postPosts = function(data){
         post.content  +
     	"</p>"
   })
-  document.getElementById("feed-container").innerHTML = postArr.reverse().join("") 
+  document.getElementById("feed-container").innerHTML = postArr.reverse().join("")
 }
 
 setInterval(function(){loadPosts(postPosts)}, 2000)
