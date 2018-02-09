@@ -33,7 +33,7 @@ class Server
         rescue Exception => error
           puts "Error: " + error.to_s
           puts error.backtrace
-          socket.print "HTTP/1.1 500 Internal Server Error\r\nConnection: close\r\n\r\nI'm an error. Apparently the server didn't like your request and threw me!"
+          socket.print middleware.error.build
           socket.close
         end 
       end
