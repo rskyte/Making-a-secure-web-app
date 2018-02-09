@@ -2,6 +2,7 @@ ENV['DB_ENV'] ||= 'test'
 require 'capybara/rspec'
 require 'db-connect'
 require_relative '../server.rb'
+require_relative './web_helpers.rb'
 
 Thread.new{ Server.new(3001, App).run }
 

@@ -17,16 +17,12 @@ feature "Served pages" do
   end
 
 	scenario "user signs up- redirects to welcome" do
-  	visit '/users/new'
-  	fill_in 'username', with: 'Tester'
-  	click_on 'submit'
+		sign_up()
   	expect(page).to have_content "Welcome"
   end
 
 	scenario "user is welcomed after registration" do
-		visit '/users/new'
-		fill_in 'username', with: 'Tester'
-		click_on 'submit'
+		sign_up(username: 'Tester')
 		expect(page).to have_content "Welcome Tester"
 	end
 
@@ -36,11 +32,21 @@ feature "Served pages" do
 	end
 
 	scenario "User can signin to their existing account" do
-		User.create("username" => "testuser")
-		visit '/users/signin'
-		fill_in 'username', with: "testuser"
-		click_on 'sign-in'
+		sign_up()
+		sign_in()
 		expect(page).to have_content 'Welcome testuser'
+	end
+
+	scenario "User cannot view the posts page if not logged in" do
+		visit '/posts'
+		expect(page).to have_content 'Sign In'
+	end
+
+	scenario "User can view the posts page if they are logged in" do
+		sign_up()
+		sign_in()
+		visit '/posts'
+		expect(page).to have_content 'Sign Out'
 	end
 
   scenario "User visits non-existant page" do

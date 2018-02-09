@@ -24,6 +24,12 @@ class App
     login user, redirect('/') if user
   end
 
+  def get_posts request
+    unless request.has_cookie?
+      return redirect('/users/signin')
+    end
+    File.read('public/posts.html')
+  end
 
   def post_users request
     user = User.create("username" => request.get_param("username"))
