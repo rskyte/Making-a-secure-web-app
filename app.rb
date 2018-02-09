@@ -21,9 +21,12 @@ class App
     File.read("public/sign-in.html")
   end
 
-  def post_login request
-    user = User.find("username" => request.get_param("username"))
-    login user, redirect('/posts') if user
+  def post_users_signin request
+    user = User.find_first("username" => request.get_param("username"))
+    if user.password == request.get_param("password") && user
+      return login user, redirect('/posts')
+    end
+    redirect('/users/signin')
   end
 
   def get_posts request
@@ -35,8 +38,12 @@ class App
   end
 
   def post_users request
-    user = User.create("username" => request.get_param("username"))
-    login user, redirect('/posts')
+    if request.get_param("password") == request.get_param("password-conf")
+      user = User.create("username" => request.get_param("username"),
+                         "password" => request.get_param("password"))
+      return login user, redirect('/posts')
+    end
+    redirect('/users/new')
   end
 
   def get_users_signout request

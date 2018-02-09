@@ -24,15 +24,15 @@
             </div>
             <br>
             <div id="sign-in-form-box" class="sign-in-form-box">
-              <form id="sign-in-form" action="/users" method="post">
+              <form id="sign-in-form" action="/users/signin" method="post">
                 <label class="auth-text" for="username">Username</label>&nbsp;
                 <br>
-                <input id="username" type="text" name="username">
+                <input id="username" type="text" name="username" required>
                 <br>
                 <br>
                 <label class="auth-text" for="password">Password</label>&nbsp;
                 <br>
-                <input id="password" type="password" name="password">
+                <input id="password" type="password" name="password" required>
                 <div class="auth-submit-box">
                   <button id="sign-in" form="sign-in-form" class="post-button" value="Sign In">Sign In</button>
                 </div>
