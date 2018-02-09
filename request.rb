@@ -25,8 +25,7 @@ class Request
   end
 
   def get_cookie(key)
-    p hash["Cookie"]
-    cookie_hash = hash["Cookie"].split(";").map{|cookie| cookie.split("=")}.to_h
+    cookie_hash = hash["Cookie"].split("; ").map{|cookie| cookie.split("=")}.to_h
     return cookie_hash[key]
   end
 
