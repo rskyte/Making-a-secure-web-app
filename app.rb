@@ -39,6 +39,10 @@ class App
     login user, redirect('/')
   end
 
+  def post_posts request
+
+  end
+
   private
   def redirect path
     {location: path, code: "303 See Other"}

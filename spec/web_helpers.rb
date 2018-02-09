@@ -9,3 +9,8 @@ def sign_in(username: 'testuser')
   fill_in 'username', with: username
   click_on 'sign-in'
 end
+
+def make_post(test_content)
+  fill_in 'postinfo', with: test_content
+  click_on 'post'
+end

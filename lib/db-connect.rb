@@ -13,6 +13,7 @@ class DBConnect
     conn.exec("CREATE DATABASE hackapp_#{name};")
     conn = PG.connect(dbname: "hackapp_#{name}")
   	conn.exec("create table users(id serial, username varchar(255));")
+    conn.exec("create table posts(id serial, content text, user_id integer);")
   end
 
   def self.clear(name = 'test')
