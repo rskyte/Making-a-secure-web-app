@@ -1,4 +1,5 @@
 require_relative './lib/user'
+require_relative './lib/post'
 require_relative './lib/templating_engine'
 
 class App
@@ -30,6 +31,7 @@ class App
     unless request.has_cookie?
       return redirect('/users/signin')
     end
+    @posts = Post.all
     @username = current_user(request).username if current_user(request)
     herb('public/posts.html')
   end
@@ -40,7 +42,8 @@ class App
   end
 
   def post_posts request
-
+    post = Post.create("content" => request.get_param("post-content"), "user_id" => current_user(request).id)
+    redirect('/posts')
   end
 
   private

@@ -32,13 +32,16 @@
     <div id="centre-build" class="centre-build">
       <div id="post-area" class="container-a">
         <div id="feed-container" class="feed-container">
-          <p id="post-container" class="post-container">
-            Posts displayed in divs
-          </p>
+          ~% @posts.each { |post| %~
+            <p id="post-container" class="post-container">
+              <b style="color:red"> ~%= User.find_first({ "id" => post.user_id }).username + ":" %~</b>
+              ~%= post.content %~
+            </p>
+          ~% } %~
         </div>
         <div id="post-form" class="post-form-area">
           <form id="postform" action="/posts" method="post" class="post-form">
-            <textarea id="postinfo" class="post-form-tb" rows="5" cols="70" placeholder="What's on your mind?" name="post-content"></textarea>
+            <textarea id="postinfo" class="post-form-tb" rows="5" cols="70" placeholder="Whats on your mind?" name="post-content"></textarea>
             <div id="submit-post" class="submit-post">
               <button id="post" type="submit" form="postform" class="post-button" style="font-size:2.2vw">Post</button>
             </div>
