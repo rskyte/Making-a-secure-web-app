@@ -40,7 +40,6 @@ class App
   end
 
   def get_users_signout request
-    p current_user(request)
     redirect('/users/signin', "user-id=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT")
   end
 
@@ -52,7 +51,6 @@ class App
   end
 
   def login user, params
-    p user
     params[:cookie] = "user-id=#{user.id}; path=/"
     params
   end

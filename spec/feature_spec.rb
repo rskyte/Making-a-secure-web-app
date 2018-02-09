@@ -18,13 +18,8 @@ feature "Served pages" do
 
 	scenario "user signs up- redirects to welcome" do
 		sign_up()
-  	expect(page).to have_content "Welcome"
+  	expect(page).to have_content "Signed in as testuser"
   end
-
-	scenario "user is welcomed after registration" do
-		sign_up(username: 'Tester')
-		expect(page).to have_content "Welcome Tester"
-	end
 
 	scenario "user can visit signin page" do
 		visit '/users/signin'
@@ -33,8 +28,9 @@ feature "Served pages" do
 
 	scenario "User can signin to their existing account" do
 		sign_up()
+		click_link "Sign Out"
 		sign_in()
-		expect(page).to have_content 'Welcome testuser'
+		expect(page).to have_content "Signed in as testuser"
 	end
 
 	scenario "User cannot view the posts page if not logged in" do
@@ -45,7 +41,6 @@ feature "Served pages" do
 	scenario "User can view the posts page if they are logged in" do
 		sign_up()
 		sign_in()
-		visit '/posts'
 		expect(page).to have_content 'Sign Out'
 	end
 
