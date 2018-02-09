@@ -23,7 +23,7 @@ class App
 
   def post_login request
     user = User.find("username" => request.get_param("username"))
-    login user, redirect('/') if user
+    login user, redirect('/posts') if user
   end
 
   def get_posts request
@@ -36,16 +36,24 @@ class App
 
   def post_users request
     user = User.create("username" => request.get_param("username"))
-    login user, redirect('/')
+    login user, redirect('/posts')
+  end
+
+  def get_users_signout request
+    p current_user(request)
+    redirect('/users/signin', "user-id=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT")
   end
 
   private
-  def redirect path
-    {location: path, code: "303 See Other"}
+  def redirect(path, cookie = nil)
+    params = {location: path, code: "303 See Other"}
+    params[:cookie] = cookie if cookie
+    params
   end
 
   def login user, params
-    params[:cookie] = "user-id=#{user.id}"
+    p user
+    params[:cookie] = "user-id=#{user.id}; path=/"
     params
   end
 
