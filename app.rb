@@ -1,7 +1,8 @@
 require_relative './lib/user'
+require_relative './lib/templating_engine'
 
 class App
-  include templating_engine
+  include TemplatingEngine
 
   def get_homepage request
     username = current_user(request).username if current_user(request)
@@ -29,7 +30,8 @@ class App
     unless request.has_cookie?
       return redirect('/users/signin')
     end
-    File.read('public/posts.html')
+    @username = current_user(request).username if current_user(request)
+    herb('public/posts.html')
   end
 
   def post_users request

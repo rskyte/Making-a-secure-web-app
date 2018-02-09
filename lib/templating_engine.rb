@@ -1,13 +1,15 @@
 module TemplatingEngine
 
 	def herb(file)
-		execute(convert(File.read(file)))
+		text = File.read file
+		text = convert text
+		execute text
 	end
 
 	private
 
 	def convert string
-		("output = \"" + string)
+		("output = \"" + string.gsub("\"","'"))
 			.delete("\n")
 			.gsub("~%=", "\"\noutput +=")
 		  .gsub("~%", "\"\n")

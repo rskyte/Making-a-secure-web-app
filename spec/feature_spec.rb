@@ -49,6 +49,13 @@ feature "Served pages" do
 		expect(page).to have_content 'Sign Out'
 	end
 
+	scenario "Post page shows which user is logged in" do
+		sign_up()
+		sign_in()
+		visit '/posts'
+		expect(page).to have_content 'Signed in as testuser'
+	end
+
   scenario "User visits non-existant page" do
   	visit '/bloopers'
   	expect(page).to have_content '404 Error Page not found'
