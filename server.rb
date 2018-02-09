@@ -22,12 +22,11 @@ class Server
         begin
           request = Request.new(socket.recv(4096))
           request.generate_hashes
-          #pp(request)
+          # pp(request)
           # resource = request.get_location
           # post_users(request) if request.get_method == 'POST' && request.get_location
           # http_response = formulate_response(resource)
           res = middleware.get_response(request)
-
           socket.print(res.build)
           socket.close
         rescue Exception => error
@@ -55,8 +54,6 @@ class Server
   #     "\r\n" +
   #     response
   # end
-
-
 
   # def formulate_response(resource)
   #   res = try_find_resource(resource)

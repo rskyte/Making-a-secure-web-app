@@ -1,4 +1,5 @@
 require_relative 'models/user'
+require_relative 'models/post'
 require_relative '../lib/templating_engine'
 
 class App
@@ -34,6 +35,7 @@ class App
       return redirect('/users/signin')
     end
     @username = current_user(request).username if current_user(request)
+    @posts = Post.all.reverse
     herb('public/posts.html')
   end
 
