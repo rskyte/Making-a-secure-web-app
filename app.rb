@@ -15,8 +15,8 @@ class App
     File.read("public/sign-up.html")
   end
 
-  def get_login request
-    "Login page"
+  def get_users_signin request
+    File.read("public/sign-in.html")
   end
 
   def post_login request
