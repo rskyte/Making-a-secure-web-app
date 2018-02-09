@@ -1,4 +1,4 @@
-require_relative 'lib/db-connect'
+require_relative 'lib/db/db-connect'
 
 DBConnect.clear
 DBConnect.clear('development')

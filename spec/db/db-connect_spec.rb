@@ -1,6 +1,5 @@
 describe "accessing the database" do
 
-
 	describe "#access_database" do
 
 	  it "can input and read from the database" do

@@ -1,9 +1,9 @@
 ENV['DB_ENV'] ||= 'development'
 require 'socket'
-require_relative './request'
+require_relative 'lib/server/request'
 require 'pp'
-require_relative 'lib/db-connect'
-require_relative './middleware'
+require_relative 'lib/db/db-connect'
+require_relative 'lib/server/middleware'
 
 class Server
 
@@ -35,7 +35,7 @@ class Server
           puts error.backtrace
           socket.print middleware.error.build
           socket.close
-        end 
+        end
       end
     end
   end

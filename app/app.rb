@@ -1,5 +1,5 @@
-require_relative './lib/user'
-require_relative './lib/templating_engine'
+require_relative 'models/user'
+require_relative '../lib/templating_engine'
 
 class App
   include TemplatingEngine

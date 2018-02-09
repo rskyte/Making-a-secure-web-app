@@ -1,4 +1,4 @@
-require 'db-model'
+require_relative '../../lib/db/db-model'
 
 class TestDBModel
   include DBModel

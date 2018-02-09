@@ -1,5 +1,5 @@
-require './app'
-require_relative './lib/response'
+require_relative '../../app/app.rb'
+require_relative 'response'
 
 class Middleware
   ErrorResponse = "I'm an error. Apparently the server didn't like your request and threw me!"
@@ -12,7 +12,7 @@ class Middleware
 
   def get_response request
     params =get_response_params(build_controller_name(request), request)
-    
+
     response_class.new(params)
   end
 
@@ -37,7 +37,7 @@ class Middleware
   end
 
   def get_response_params(method, request)
-    if app.respond_to?(method) 
+    if app.respond_to?(method)
      res = app.public_send(method, request)
      return (res.is_a? Hash) ? res : {text: res}
     else
