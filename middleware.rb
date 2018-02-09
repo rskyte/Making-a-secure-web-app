@@ -2,6 +2,7 @@ require './app'
 require_relative './lib/response'
 
 class Middleware
+  ErrorResponse = "I'm an error. Apparently the server didn't like your request and threw me!"
 
   def initialize(app_class, response_class = Response)
     @app = app_class.new
@@ -11,13 +12,13 @@ class Middleware
 
   def get_response request
     params =get_response_params(build_controller_name(request), request)
-
+    
     response_class.new(params)
-
   end
 
-  def redirect path
-    {text: "Location: #{path}\r\n", code: "303 See Other"}
+  def error
+     params = {code: "500 Internal Server Error", text: ErrorResponse }
+     response_class.new(params)
   end
 
   private
@@ -36,25 +37,23 @@ class Middleware
   end
 
   def get_response_params(method, request)
-    if app.respond_to?(method)
+    if app.respond_to?(method) 
      res = app.public_send(method, request)
      return (res.is_a? Hash) ? res : {text: res}
     else
-     return try_find_resource(request.get_location)
+     try_find_resource(request.get_location)
     end
   end
 
   def list_directory(dir=".")
-    p "In list directory"
     dir = '.' if dir == ''
     list = Dir.entries(dir).sort
     newlist = []
     list.each { |item| newlist << "<a href=/#{dir}/#{item}>#{item}</a>"}
-    {text: newlist.join("<br>")}
+    newlist.join("<br>")
   end
 
   def try_find_resource(resource)
-    p "In try find resource"
     resource = resource.sub(/^\/+/, "")
     is_dir = File.directory?(resource)
     if is_dir || resource == ''
