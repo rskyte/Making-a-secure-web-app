@@ -16,7 +16,7 @@ feature "Served pages" do
   	expect(page).to have_content 'Sign Up'
   end
 
-	scenario "user signs up- redirects to welcome" do
+	scenario "user signs up- redirects to posts page" do
 		sign_up()
   	expect(page).to have_content "Signed in as testuser"
   end
