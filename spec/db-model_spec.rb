@@ -9,6 +9,15 @@ class TestDBModel
   end
 end
 
+class TestRelationDBModel
+  include DBModel
+  attr_accessor :testdbmodelid, :id
+  def initialize(params)
+    @id = params["id"]
+    @testdbmodelid = params["testdbmodelid"]
+  end
+end
+
 describe DBModel do
 
   subject(:testdbmodel) { TestDBModel }
@@ -76,6 +85,18 @@ describe DBModel do
   describe "#tablename" do
     it "returns the name of the table in the database corresponding to the model" do
       expect(testdbmodel.tablename).to eq "testdbmodels"
+    end
+  end
+
+  describe "#get_relations" do
+    it "can get associated records from the database" do
+      allow(DBConnect).to receive(:access_database)
+        .with("select * from testrelationdbmodels where testdbmodelid = 1;")
+          .and_yield([{"id" => 0, "testdbmodelid" => 1},
+                      {"id" => 1, "testdbmodelid" => 1}])
+      tdbm = testdbmodel.new({"id" => 1, "username" => "username"})
+      result = tdbm.get_relations("TestRelationDBModel")
+      expect(result.length).to eq 2
     end
   end
 end

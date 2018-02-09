@@ -18,9 +18,10 @@ module DBModel
     DBConnect.access_database("update #{self.class.tablename} set #{data} where id = #{id};")
   end
 
-  # def get_relations(relation-name)
-  #   self.relation-name = eval(relation-name.capitalize).all
-  # end
+  def get_relations(relation_name)
+    class_name = eval(relation_name)
+    class_name.find_all({"#{self.class.name.downcase}id" => id})
+  end
 
 private
   def extract_attribute_to_string attribute
