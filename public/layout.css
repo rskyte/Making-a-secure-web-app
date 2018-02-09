@@ -278,7 +278,13 @@ body {
 .auth-submit-box {
   position: absolute;
   left: 33.5%;
-  top: 95%;
+  top: 83%;
+}
+
+.register-box {
+  position: absolute;
+  left: 31%;
+  top: 113%;
 }
 
 .search-bar {
@@ -288,7 +294,7 @@ body {
 .sign-in-form-box {
   position: absolute;
   left: 20%;
-  top: 37%;
+  top: 32%;
   bottom: 20%;
   right: 20%;
 }
