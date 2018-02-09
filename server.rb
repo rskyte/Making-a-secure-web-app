@@ -19,16 +19,23 @@ class Server
     puts "Server booted!"
     while(true) do
       Thread.start(@server.accept) do |socket|
-        request = Request.new(socket.recv(4096))
-        request.generate_hashes
-        #pp(request)
-        # resource = request.get_location
-        # post_users(request) if request.get_method == 'POST' && request.get_location
-        # http_response = formulate_response(resource)
-        res = middleware.get_response(request)
+        begin
+          request = Request.new(socket.recv(4096))
+          request.generate_hashes
+          #pp(request)
+          # resource = request.get_location
+          # post_users(request) if request.get_method == 'POST' && request.get_location
+          # http_response = formulate_response(resource)
+          res = middleware.get_response(request)
 
-        socket.print(res.build)
-        socket.close
+          socket.print(res.build)
+          socket.close
+        rescue Exception => error
+          puts "Error: " + error.to_s
+          puts error.backtrace
+          socket.print "HTTP/1.1 500 Internal Server Error\r\nConnection: close\r\n\r\nI'm an error. Apparently the server didn't like your request and threw me!"
+          socket.close
+        end 
       end
     end
   end
