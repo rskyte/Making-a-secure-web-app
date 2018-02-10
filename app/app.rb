@@ -31,7 +31,7 @@ class App
   end
 
   def get_posts request
-    unless request.has_cookie?
+    unless request.has_cookie? && request.get_cookie('user-id')
       return redirect('/users/signin')
     end
     @username = current_user(request).username if current_user(request)
