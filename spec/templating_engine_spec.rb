@@ -1,4 +1,10 @@
-# require 'templating_engine'
+
+# Templating engine tests were eventually decommissioned when the corresponding
+# methods were made private. The file has been kept for documentation purposes
+
+
+# require_relative '../lib/templating_engine'
+#
 # describe TemplatingEngine do
 # 	let :string1 { "<h1> head </h1>\n~% var = 'test' %~~% if var %~\nhello ~%= var %~\n~% end %~\n<br>\nthat's all" }
 # 	let :string2 { "output = \"<h1> head </h1>\"\n var = 'test' \noutput += \"\"\n if var \noutput += \"hello \"\noutput += var \noutput += \"\"\n end \noutput += \"<br>that's all\"\nreturn output" }

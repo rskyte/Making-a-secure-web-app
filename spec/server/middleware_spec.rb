@@ -12,13 +12,11 @@ describe Middleware do
   it "should build a suitable name for a request given" do
     expect(response_class).to receive(:new).with({text: "Test passed"})
     subject.get_response(request)
-    # expect(subject.build_controller_name(request)).to eq('Test passed')
   end
 
   it "should handle multiple slashes" do
     expect(response_class).to receive(:new).with({text: "Test 2 passed"})
     subject.get_response(request2)
-    # expect(subject.build_controller_name(request2)).to eq('Test 2 passed')
   end
 
   it "correctly returns 404 errors" do
