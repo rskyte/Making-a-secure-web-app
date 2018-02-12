@@ -4,6 +4,15 @@
     <link rel="stylesheet" href="../public/layout.css">
     <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Merienda+One' rel='stylesheet' type='text/css'>
+    <form>
+   <input type="text" >
+   <input  required>
+</form>
+  <script>
+     function escapeRegExp(str) {
+       return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+     }
+  </script>
   </head>
   <body>
     <div id="header-wrap" class="header-wrap">
@@ -28,9 +37,9 @@
                 <label class="auth-text" for="username">Username</label>
                 <input id="username" type="text" name="username" required>
                 <label class="auth-text" for="password">Password</label>
-                <input id="password" type="password" name="password" minlength=7 required>
+                <input id="password" type="password" name="password" minlength=7 oninput="form.password-conf.pattern = escapeRegExp(this.value)" required>
                 <label class="auth-text" for="password-conf">Confirm password</label>
-                <input id="password-conf" type="password" name="password-conf" required>
+                <input id="password-conf" type="password" name="password-conf" pattern="" title="Passwords must match" required>
                 <div class="auth-submit-box" style="top:105%">
                   <button id="submit" form="sign-in-form" class="post-button" value="Sign Up">Sign Up</button>
                 </div>
