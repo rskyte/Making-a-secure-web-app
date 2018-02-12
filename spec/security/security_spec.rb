@@ -22,10 +22,8 @@ feature("directory traversal") do
   end
 end
 feature("password encryption") do
-
   scenario("passwords are not stored in database") do
     sign_up()
     expect(User.find_first({"username" => "testuser"}).password).not_to eq("password")
   end
-
 end

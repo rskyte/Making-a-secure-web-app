@@ -1,9 +1,10 @@
 require_relative 'models/user'
 require_relative 'models/post'
 require_relative '../lib/templating_engine'
+require_relative '../lib/enc'
 
 class App
-  include TemplatingEngine
+  include Enc, TemplatingEngine
 
   def get_homepage request
      redirect "/posts"
@@ -20,14 +21,14 @@ class App
   def post_users_signin request
     request = process_request request
     user = User.find_first("username" => request.get_param("username"))
-    if user && user.authorize(request.get_param("password")) 
+    if user && user.authorize(request.get_param("password"))
       return login user, redirect('/posts')
     end
     redirect('/users/signin')
   end
 
   def get_posts request
-    unless request.has_cookie?
+    unless request.has_cookie? && request.get_cookie("user-id")
       return redirect('/users/signin')
     end
     @username = current_user(request).username if current_user(request)
@@ -88,11 +89,16 @@ class App
   end
 
   def login user, params
-    params[:cookie] = "user-id=#{user.id}; path=/"
+    params[:cookie] = "user-id=#{cookie_enc(user.id)}; path=/"
     params
   end
 
   def current_user request
-    User.find_first({"id" => request.get_cookie("user-id")}) if request.has_cookie?
+    if request.has_cookie?
+      User.all.select { |user|
+        cookie_enc(user.id) == request.get_cookie("user-id")
+      }[0]
+    end
+    # User.find_first({"id" => request.get_cookie("user-id")}) if request.has_cookie?
   end
 end

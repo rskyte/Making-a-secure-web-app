@@ -1,5 +1,12 @@
 module Enc
 
+	HASHMAP = {
+		"00" => ">",
+		"01" => "<",
+		"10" => "^",
+		"11" => "v"
+	}
+
 	def enc inputstring
 	  num = inputstring.unpack("b100")[0].to_i(2)
 	  srand(num)
@@ -10,6 +17,14 @@ module Enc
 	  	chr = "u" if chr == "'"
 	  	chr
 	  }.join
+	end
+
+	def cookie_enc input_int
+		srand(input_int.to_i)
+		nu = rand(2 ** 512)
+		nu.to_s(2).scan(/../).map { |chr|
+			HASHMAP[chr]
+		}.join
 	end
 
 end

@@ -15,13 +15,10 @@ class User
 
   def self.create(params)
   	params["password"] = enc(params["password"])
-  	p params
   	super(params)
   end
 
   def authorize(password)
-  	p @password
-  	p enc(password)
   	return @password == enc(password)
   end
 
