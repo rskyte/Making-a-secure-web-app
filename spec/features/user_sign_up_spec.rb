@@ -24,13 +24,18 @@ feature "User - Sign Up" do
   #   expect(page).to have_content "Username already taken!"
   # end
 
+  scenario "can sign up with valid details" do
+    sign_up()
+    expect(page).to have_content("Signed in as testuser")
+  end
+
   scenario "password cannot be empty" do
     sign_up(password: "")
     message = page.find("#password").native.attribute("validationMessage")
     expect(message).to eq "Please fill in this field."
   end
 
-  scenario "password cannot be empty" do
+  scenario "username cannot be empty" do
     sign_up(username: "")
     message = page.find("#username").native.attribute("validationMessage")
     expect(message).to eq "Please fill in this field."
