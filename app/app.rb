@@ -52,7 +52,8 @@ class App
     if validate_password request
       user = User.create("username" => request.get_param("username"),
                          "password" => request.get_param("password"))
-      return login user, redirect('/posts')
+                         p user
+      return login user, redirect('/posts') if user
     end
     redirect('/users/new')
   end
@@ -63,7 +64,7 @@ class App
 
   private
   def validate_password request
-    (request.get_param("password") == request.get_param("password-conf")) && (request.get_param("password").length > 6)
+    (request.get_param("password") == request.get_param("password_conf")) && (request.get_param("password").length > 6)
   end
 
   def redirect(path, cookie = nil)

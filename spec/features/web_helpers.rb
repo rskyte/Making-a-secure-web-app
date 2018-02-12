@@ -2,7 +2,7 @@ def sign_up(username: 'testuser', password: "password", password_conf: "password
   visit '/users/new'
   fill_in 'username', with: username
   fill_in 'password', with: password
-  fill_in 'password-conf', with: password_conf
+  fill_in 'password_conf', with: password_conf
   click_on 'submit'
 end
 

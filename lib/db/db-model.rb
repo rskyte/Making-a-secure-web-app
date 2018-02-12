@@ -40,10 +40,15 @@ end
 module DBModelClass
 
   def create(params)
-    separate_params(params) do |keys, data|
-      DBConnect.access_database("insert into #{tablename}(#{keys}) values(#{data});")
+    begin
+      separate_params(params) do |keys, data|
+        DBConnect.access_database("insert into #{tablename}(#{keys}) values(#{data});")
+      end
+    rescue PG::UniqueViolation => error
+      return
+    ensure
+      return self.find_first(params)
     end
-    self.find_first(params)
   end
 
   def find_first(params)

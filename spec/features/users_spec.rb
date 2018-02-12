@@ -51,4 +51,11 @@ feature "Users" do
     message = page.find("#password").native.attribute("validationMessage")
     expect(message).to eq "Please use at least 7 characters (you are currently using 5 characters)."
   end
+
+  scenario "users cannot sign up with a username which is already taken" do
+    sign_up
+    click_link "Sign Out"
+    sign_up
+    expect(page).to have_content "Username already taken!"
+  end
 end

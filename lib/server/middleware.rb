@@ -47,7 +47,7 @@ class Middleware
 
   def list_directory(dir=".")
     dir = '.' if dir == ''
-    p dir
+    # p dir
     list = Dir.entries(dir).sort
     newlist = []
     list.each { |item| newlist << "<a href=/#{dir}/#{item}>#{item}</a>"}

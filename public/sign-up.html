@@ -37,9 +37,9 @@
                 <label class="auth-text" for="username">Username</label>
                 <input id="username" type="text" name="username" required>
                 <label class="auth-text" for="password">Password</label>
-                <input id="password" type="password" name="password" minlength=7 oninput="form.password-conf.pattern = escapeRegExp(this.value)" required>
-                <label class="auth-text" for="password-conf">Confirm password</label>
-                <input id="password-conf" type="password" name="password-conf" pattern="" title="Passwords must match" required>
+                <input id="password" type="password" name="password" minlength=7 oninput="form.password_conf.pattern = escapeRegExp(this.value)" required>
+                <label class="auth-text" for="password_conf">Confirm password</label>
+                <input id="password-conf" type="password" name="password_conf" required pattern="" title="Passwords must match">
                 <div class="auth-submit-box" style="top:105%">
                   <button id="submit" form="sign-in-form" class="post-button" value="Sign Up">Sign Up</button>
                 </div>
