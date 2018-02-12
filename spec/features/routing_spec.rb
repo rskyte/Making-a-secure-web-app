@@ -1,10 +1,5 @@
 feature "Served pages" do
 
-	scenario "homepage" do
-		visit '/'
-		expect(page).to have_content 'Welcome'
-	end
-
   scenario "User visits non-existant page" do
   	visit '/bloopers'
   	expect(page).to have_content '404 Error Page not found'

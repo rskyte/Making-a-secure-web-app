@@ -46,9 +46,8 @@ module DBModelClass
       end
     rescue PG::UniqueViolation => error
       return
-    ensure
-      return self.find_first(params)
     end
+    return self.find_first(params)
   end
 
   def find_first(params)
