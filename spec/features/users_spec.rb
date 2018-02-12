@@ -39,4 +39,16 @@ feature "Users" do
     visit '/posts'
     expect(page).to have_content 'Signed in as testuser'
   end
+
+  scenario "cannot sign up with non-matching passwords" do
+    sign_up(password_conf: "incorrect")
+    expect(page).to have_content "Passwords do not match"
+  end
+
+  scenario "cannot sign up with short password" do
+    sign_up(password: "short")
+    message = page.find("#password").native.attribute("validationMessage")
+    p message
+    expect(message).to eq "Please use at least 7 characters (you are currently using 5 characters)."
+  end
 end

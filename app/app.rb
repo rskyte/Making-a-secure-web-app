@@ -31,7 +31,7 @@ class App
   end
 
   def get_posts request
-    unless request.has_cookie? && request.get_cookie('user-id')
+    unless request.has_cookie?
       return redirect('/users/signin')
     end
     @username = current_user(request).username if current_user(request)
@@ -49,7 +49,7 @@ class App
   end
 
   def post_users request
-    if request.get_param("password") == request.get_param("password-conf")
+    if validate_password request
       user = User.create("username" => request.get_param("username"),
                          "password" => request.get_param("password"))
       return login user, redirect('/posts')
@@ -62,6 +62,10 @@ class App
   end
 
   private
+  def validate_password request
+    (request.get_param("password") == request.get_param("password-conf")) && (request.get_param("password").length > 6)
+  end
+
   def redirect(path, cookie = nil)
     params = {location: path, code: "303 See Other"}
     params[:cookie] = cookie if cookie
