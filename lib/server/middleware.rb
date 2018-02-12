@@ -47,6 +47,7 @@ class Middleware
 
   def list_directory(dir=".")
     dir = '.' if dir == ''
+    p dir
     list = Dir.entries(dir).sort
     newlist = []
     list.each { |item| newlist << "<a href=/#{dir}/#{item}>#{item}</a>"}
@@ -57,7 +58,7 @@ class Middleware
     resource = resource.sub(/^\/+/, "")
     is_dir = File.directory?(resource)
     if is_dir || resource == ''
-      return list_directory(resource)
+      return {text: list_directory(resource)}
     else
       return File.file?(resource) ? {text: File.read(resource)} : {text: "<h1>404 Error</h1><br>Page not found", code: "404 Not Found"}
     end
