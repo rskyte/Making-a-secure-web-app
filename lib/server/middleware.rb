@@ -36,6 +36,10 @@ class Middleware
     controller_name =  "#{method}#{location}".downcase
   end
 
+  def error404()
+    {text: "<h1>404 Error</h1><br>Page not found", code: "404 Not Found"}
+  end
+
   def get_response_params(method, request)
     if app.respond_to?(method)
      res = app.public_send(method, request)
@@ -56,11 +60,12 @@ class Middleware
 
   def try_find_resource(resource)
     resource = resource.sub(/^\/+/, "")
+    return error404 unless resource.start_with?("public")
     is_dir = File.directory?(resource)
     if is_dir || resource == ''
       return {text: list_directory(resource)}
     else
-      return File.file?(resource) ? {text: File.read(resource)} : {text: "<h1>404 Error</h1><br>Page not found", code: "404 Not Found"}
+      return File.file?(resource) ? {text: File.read(resource)} : error404
     end
   end
 
