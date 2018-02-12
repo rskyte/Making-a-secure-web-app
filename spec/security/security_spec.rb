@@ -6,7 +6,7 @@ feature("SQL injection") do
 	sign_in()
 	visit '/posts'
 	make_post("HACK',1); truncate table posts;--")
-	expect(Post.all.length).not_to be empty?
+	expect(Post.all).not_to be :empty?
   end
 end
 feature("directory traversal") do
