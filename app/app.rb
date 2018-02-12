@@ -20,7 +20,7 @@ class App
   def post_users_signin request
     request = process_request request
     user = User.find_first("username" => request.get_param("username"))
-    if user.password == request.get_param("password") && user
+    if user && user.authorize(request.get_param("password")) 
       return login user, redirect('/posts')
     end
     redirect('/users/signin')
