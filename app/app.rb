@@ -9,10 +9,6 @@ class App
      redirect "/posts"
   end
 
-  def get_users request
-    "Hello World!"
-  end
-
   def get_users_new request
     File.read("public/sign-up.html")
   end
@@ -69,7 +65,7 @@ class App
 
   private
   def process_request request
-    request.params.each{ |k, v| request.params[k] = sanitize_user_input(v) }
+    request.params.each{ |k, v| request.params[k] = sanitize_user_input(v) } # Comment me to allow injections
     request
   end
 
