@@ -60,13 +60,17 @@ class Middleware
 
   def try_find_resource(resource)
     resource = resource.sub(/^\/+/, "")
-    return error404 unless resource.start_with?("public")
+    return error404 unless validate_resource_path(resource)
     is_dir = File.directory?(resource)
     if is_dir || resource == ''
       return {text: list_directory(resource)}
     else
       return File.file?(resource) ? {text: File.read(resource)} : error404
     end
+  end
+
+  def validate_resource_path(resource)
+    resource.start_with?("public") && !resource.include?("..")
   end
 
 end
