@@ -6,8 +6,7 @@ class App
   include TemplatingEngine
 
   def get_homepage request
-    username = current_user(request).username if current_user(request)
-    "Welcome #{username}"
+     redirect "/posts"
   end
 
   def get_users request
