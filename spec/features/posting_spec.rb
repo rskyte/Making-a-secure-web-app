@@ -5,6 +5,7 @@ feature "Posting" do
 		sign_in()
 		visit '/posts'
 		make_post('testing')
+    sleep(1)
 		expect(page).to have_content 'testing'
 	end
 

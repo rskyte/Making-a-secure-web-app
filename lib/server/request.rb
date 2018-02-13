@@ -51,11 +51,13 @@ class Request
   end
 
   def create_params_hash()
-    param_arr = hash()["body"].split("&")
-    param_arr.each { |item|
-      key, value = item.split("=")
-      params[key] = value
-    }
+    if hash["body"]
+      param_arr = hash()["body"].split("&")
+      param_arr.each { |item|
+        key, value = item.split("=")
+        params[key] = value
+      }
+    end
   end
 
 end

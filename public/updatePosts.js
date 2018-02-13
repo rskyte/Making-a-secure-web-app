@@ -20,22 +20,15 @@ displayPosts = function(data){
   document.getElementById("feed-container").innerHTML = postArr.reverse().join("")
 }
 
-function postPost(){
-  console.log('postPost')
-  var text;
-  var userId;
-  while(!text || !userId) {
-    text = document.getElementById("postinfo").value
-    var userCookie = document.cookie.split("; ")[0]
-    userId = userCookie.split("=")[1];
-    if(text == "") { break }
-  }
-  console.log(userId)
-  console.log(text)
+function postPost() {
+  var text = document.getElementById("postinfo").value
+  var userCookie = document.cookie.split("; ")[0]
+  var userId = userCookie.split("=")[1];
   document.getElementById("postinfo").value = ""
   var xhttp = new XMLHttpRequest();
   xhttp.open("POST", "/posts", true);
-  xhttp.send("user-id=" + userId + "&post-content=" + text);
+  send = function(xhttp, userId, text) { xhttp.send("user-id=" + userId + "&post-content=" + text) };
+  setTimeout( send(xhttp, userId, text), 500);
   loadPosts(displayPosts)
 }
 
