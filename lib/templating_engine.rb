@@ -18,7 +18,6 @@ module TemplatingEngine
 	end
 
 	def execute string
-		p string
 		eval(string)
 	end
 

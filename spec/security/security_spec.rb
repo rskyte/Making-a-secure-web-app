@@ -41,7 +41,6 @@ feature("authtoken encryption") do
     # sleep(60)
     user = User.find_first({"username" => "testuser"})
     authkey = page.driver.browser.manage.cookie_named('user-id')[:value].split("-",2)[0]
-    p authkey
     expect(user.authhash).not_to eq(authkey)
   end
 
