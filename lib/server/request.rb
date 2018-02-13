@@ -1,3 +1,5 @@
+require 'pry'
+
 class Request
   attr_reader :text_arr, :hash, :params
 

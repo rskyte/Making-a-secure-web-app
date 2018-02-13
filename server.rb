@@ -21,8 +21,8 @@ class Server
       Thread.start(@server.accept) do |socket|
         begin
           request = Request.new(socket.recv(4096))
+          # pp request
           request.generate_hashes
-          # pp(request)
           # resource = request.get_location
           # post_users(request) if request.get_method == 'POST' && request.get_location
           # http_response = formulate_response(resource)

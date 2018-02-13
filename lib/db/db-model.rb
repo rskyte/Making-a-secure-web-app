@@ -44,7 +44,7 @@ module DBModelClass
       separate_params(params) do |keys, data|
         DBConnect.access_database("insert into #{tablename}(#{keys}) values(#{data});")
       end
-    rescue PG::UniqueViolation => error
+    rescue
       return
     end
     return self.find_first(params)
@@ -52,7 +52,7 @@ module DBModelClass
 
   def find_first(params)
     DBConnect.access_database("select * from #{tablename} where #{query(params)};") do |result|
-      self.new(result[0])
+      result[0] ? self.new(result[0]) : nil
     end
   end
 

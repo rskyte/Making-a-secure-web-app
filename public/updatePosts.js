@@ -21,18 +21,22 @@ displayPosts = function(data){
 }
 
 function postPost(){
-  var text = document.getElementById("postinfo").value
+  console.log('postPost')
+  var text;
+  var userId;
+  while(!text || !userId) {
+    text = document.getElementById("postinfo").value
+    var userCookie = document.cookie.split("; ")[0]
+    userId = userCookie.split("=")[1];
+    if(text == "") { break }
+  }
+  console.log(userId)
+  console.log(text)
   document.getElementById("postinfo").value = ""
   var xhttp = new XMLHttpRequest();
-  xhttp.open("Post", "/posts", true);
-  var cookieHash = {} 
-  document.cookie.split("; ").forEach(function(cookie){
-    const arr = cookie.split("=");
-    cookieHash[arr[0]]= arr[1];
-  })
-  const id = cookieHash['user-id']
-  xhttp.send("user-id="+id+"&post-content=" + text);
+  xhttp.open("POST", "/posts", true);
+  xhttp.send("user-id=" + userId + "&post-content=" + text);
   loadPosts(displayPosts)
 }
 
-setInterval(function(){loadPosts(displayPosts)}, 2000)
+setInterval(function(){loadPosts(displayPosts)}, 2500)

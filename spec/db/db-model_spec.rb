@@ -33,18 +33,29 @@ describe DBModel do
   end
 
   describe "reading from db" do
-    it "can find a specific record in database" do
-      expect(DBConnect).to receive(:access_database)
-        .with "select * from testdbmodels where username = 'username';"
-      testdbmodel.find_first({'username' => 'username'})
-    end
 
-    it "can return a specific record in database" do
-      allow(DBConnect).to receive(:access_database)
-        .with("select * from testdbmodels where username = 'username';")
-          .and_yield([{"username" => "username"}])
-      result = testdbmodel.find_first({'username' => 'username'})
-      expect(result.username).to eq "username"
+    describe "#find_first" do
+      it "can find a specific record in database" do
+        expect(DBConnect).to receive(:access_database)
+          .with "select * from testdbmodels where username = 'username';"
+        testdbmodel.find_first({'username' => 'username'})
+      end
+
+      it "can return a specific record in database" do
+        allow(DBConnect).to receive(:access_database)
+          .with("select * from testdbmodels where username = 'username';")
+            .and_yield([{"username" => "username"}])
+        result = testdbmodel.find_first({'username' => 'username'})
+        expect(result.username).to eq "username"
+      end
+
+      it "returns nil if record doesn't exist" do
+        allow(DBConnect).to receive(:access_database)
+          .with("select * from testdbmodels where username = 'username';")
+            .and_yield([])
+        result = testdbmodel.find_first({'username' => 'username'})
+        expect(result).to be nil
+      end
     end
 
     it "can return all records satisfying a certain query in database" do

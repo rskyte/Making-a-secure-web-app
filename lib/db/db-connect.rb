@@ -15,7 +15,7 @@ class DBConnect
     conn.exec("CREATE DATABASE hackapp_#{name};")
     conn = PG.connect(dbname: "hackapp_#{name}")
   	conn.exec("create table users(id serial, username varchar(255) not null unique, password varchar(646) not null);")
-    conn.exec("create table posts(id serial, content text, user_id integer);")
+    conn.exec("create table posts(id serial, content text not null, user_id integer);")
     conn.close
   end
 

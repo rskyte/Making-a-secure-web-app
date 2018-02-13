@@ -80,7 +80,7 @@ class App
                           '"' => "&#34;",
                           ";" => "&#59;",
                           "<" => "&#60;",
-                          ">" => "&#62;")
+                          ">" => "&#62;") if input
   end
 
   def validate_password request
