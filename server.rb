@@ -24,8 +24,6 @@ class Server
           request.generate_hashes
           # pp(request)
           # resource = request.get_location
-          # post_users(request) if request.get_method == 'POST' && request.get_location
-          # http_response = formulate_response(resource)
           res = middleware.get_response(request)
           socket.print(res.build)
           socket.close
@@ -40,26 +38,7 @@ class Server
   end
 
   private
-  # def post_users(request)
-  #   p "in post users"
-  #   p request.params
-  #   DBConnect.access_database("insert into users(username) values ('#{request.get_param('username')}')")
-  #   p "posted"
-  # end
 
-  # def build_http_response(response, code = '200 OK')
-  #   "HTTP/1.1 #{code}\r\n" +
-  #     "Connection: close\r\n" +
-  #     "Content-type: text/html\r\n" +
-  #     "\r\n" +
-  #     response
-  # end
-
-  # def formulate_response(resource)
-  #   res = try_find_resource(resource)
-  #   return build_http_response(res) if res
-  #   build_http_response(list_directory())
-  # end
 end
 
 Server.new(App).run if "server.rb" == $0
