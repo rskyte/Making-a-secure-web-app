@@ -11,6 +11,7 @@ class User
     @id = params["id"]
     @username = params["username"]
     @password = params["password"]
+    @authhash = params["authhash"]
   end
 
   def self.create(params)

@@ -95,6 +95,8 @@ class App
     authtoken = generate_auth_token
     params[:cookie] = "user-id=#{user.id}-#{authtoken}; path=/"
     user.authhash = enc(authtoken)
+    p "in login"
+    p user
     user.save
     return params
   end
@@ -103,6 +105,8 @@ class App
     if request.has_cookie?
       id, authtoken = request.get_cookie("user-id").split("-",2)
       user = User.find_first({"id" => id})
+      p "in current_user"
+      p user
       return (user.authhash == enc(authtoken)) ? user : nil
     end
     # User.find_first({"id" => request.get_cookie("user-id")}) if request.has_cookie?
