@@ -43,6 +43,7 @@ class App
   end
 
   def post_posts request
+    p request.get_param("post-content")
     request = process_request request
     post = Post.create("content" => request.get_param("post-content"),
                        "user_id" => current_user(request).id)

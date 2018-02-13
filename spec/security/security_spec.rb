@@ -27,3 +27,20 @@ feature("password encryption") do
     expect(User.find_first({"username" => "testuser"}).password).not_to eq("password")
   end
 end
+feature("authtoken encryption") do
+  # scenario("user logs in and is given an auth token") do
+  # 	srand(5)
+  # 	sign_up
+  # 	sign_in
+  # 	auth_token_value = Capybara.current_session.driver.request.cookies.[]('auth_token')
+  # 	expect(auth_token_value).to eq()
+  # end
+
+
+  scenario("authtokens are not stored in database") do
+    sign_up()
+    user =User.find_first({"username" => "testuser"})
+    
+    expect(user.authhash).not_to eq(token)
+  end
+end

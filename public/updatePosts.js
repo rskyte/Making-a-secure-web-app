@@ -22,6 +22,7 @@ displayPosts = function(data){
 
 function postPost(){
   var text = document.getElementById("postinfo").value
+  console.log(JSON.stringify(text))
   document.getElementById("postinfo").value = ""
   var xhttp = new XMLHttpRequest();
   xhttp.open("Post", "/posts", true);
