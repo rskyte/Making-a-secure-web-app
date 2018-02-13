@@ -38,7 +38,7 @@ feature("authtoken encryption") do
 
   scenario("Original authentication keys are not stored in the database") do
     sign_up()
-    sleep(60)
+    # sleep(60)
     user = User.find_first({"username" => "testuser"})
     authkey = page.driver.browser.manage.cookie_named('auth_token')[:value]
     p authkey

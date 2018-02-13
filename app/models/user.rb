@@ -5,7 +5,7 @@ class User
   include DBModel, Enc
   extend Enc
   attr_reader :id
-  attr_accessor :username, :password
+  attr_accessor :username, :password, :authhash
 
   def initialize(params)
     @id = params["id"]

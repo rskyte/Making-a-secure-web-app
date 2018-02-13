@@ -32,6 +32,7 @@ class App
       return redirect('/users/signin')
     end
     @username = current_user(request).username if current_user(request)
+    p current_user(request)
     @posts = Post.all.reverse
     herb('public/posts.html')
   end
@@ -90,14 +91,19 @@ class App
   end
 
   def login user, params
-    params[:cookie] = "user-id=#{user.id}#{generate_auth_token}; path=/"
-    params
+    p user.id
+    authtoken = generate_auth_token
+    params[:cookie] = "user-id=#{user.id}-#{authtoken}; path=/"
+    user.authhash = enc(authtoken)
+    user.save
+    return params
   end
 
   def current_user request
     if request.has_cookie?
-      user = User.find_first("id" => request.get_cookie("user-id")[0])
-      return user.authhash == enc(request.get_cookie("user-id")[1..-1]) ? user : nil
+      id, authtoken = request.get_cookie("user-id").split("-",2)
+      user = User.find_first({"id" => id})
+      return (user.authhash == enc(authtoken)) ? user : nil
     end
     # User.find_first({"id" => request.get_cookie("user-id")}) if request.has_cookie?
   end
