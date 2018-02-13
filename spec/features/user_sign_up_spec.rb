@@ -17,12 +17,13 @@ feature "User - Sign Up" do
     expect(message).to eq "Please use at least 7 characters (you are currently using 5 characters)."
   end
 
-  # scenario "cannot sign up with a username which is already taken" do
-  #   sign_up
-  #   click_link "Sign Out"
-  #   sign_up
-  #   expect(page).to have_content "Username already taken!"
-  # end
+  scenario "cannot sign up with a username which is already taken" do
+    sign_up
+    click_link "Sign Out"
+    sign_up
+    alert = page.driver.browser.switch_to.alert.text
+    expect(alert).to have_content "Username already exists"
+  end
 
   scenario "can sign up with valid details" do
     sign_up()

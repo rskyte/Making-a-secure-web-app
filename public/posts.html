@@ -15,7 +15,7 @@
         </div>
         <div id="nav-set" class="nav-set">
           <div id="current-user" class="current-user">
-            Signed in as ~%= @username %~
+            Signed in as ~%= context[:username] %~
           </div>
           <div id="nav-buttons" class="nav-buttons">
             <a href="users/1" class="button">Edit Profile</a>
@@ -33,7 +33,7 @@
     <div id="centre-build" class="centre-build">
       <div id="post-area" class="container-a">
         <div id="feed-container" class="feed-container">
-          ~% @posts.each { |post| %~
+          ~% context[:posts].each { |post| %~
             <p id="post-container" class="post-container">
               <b style="color:red"> ~%= User.find_first({ "id" => post.user_id }).username + ":" %~</b>
               ~%= post.content %~

@@ -25,8 +25,9 @@ class Request
   end
 
   def get_cookie(key)
+    return if !hash["Cookie"]
     cookie_hash = hash["Cookie"].split("; ").map{|cookie| cookie.split("=")}.to_h
-    return cookie_hash[key]
+    cookie_hash[key]
   end
 
   def has_cookie?

@@ -11,7 +11,12 @@ class App
   end
 
   def get_users_new request
-    File.read("public/sign-up.html")
+    error_msg = request.get_cookie("error-msg")
+    if error_msg
+      herb("public/sign-up.html", {error_msg: error_msg})
+    else
+      herb("public/sign-up.html", {})
+    end
   end
 
   def get_users_signin request
@@ -31,9 +36,9 @@ class App
     unless request.has_cookie? && request.get_cookie("user-id")
       return redirect('/users/signin')
     end
-    @username = current_user(request).username if current_user(request)
-    @posts = Post.all.reverse
-    herb('public/posts.html')
+    username = current_user(request).username if current_user(request)
+    posts = Post.all.reverse
+    herb('public/posts.html', {username: username, posts: posts})
   end
 
   def get_allposts request
@@ -56,7 +61,7 @@ class App
                          "password" => request.get_param("password"))
       return login user, redirect('/posts') if user
     end
-    redirect('/users/new')
+    redirect('/users/new', "error-msg=Username already exists; path=/")
   end
 
   def get_users_signout request

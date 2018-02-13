@@ -4,11 +4,14 @@
     <link rel="stylesheet" href="../public/layout.css">
     <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Merienda+One' rel='stylesheet' type='text/css'>
-    <script>
-       function escapeRegExp(str) {
-         return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-       }
-    </script>
+    <script src="../public/escaperegex.js"></script>
+
+    ~% if context[:error_msg] %~
+      <script>
+        window.alert(" ~%= context[:error_msg] %~ ");
+        document.cookie = "error-msg=deleted; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT"
+      </script>
+    ~% end %~
 
   </head>
   <body>

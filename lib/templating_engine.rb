@@ -1,9 +1,9 @@
 module TemplatingEngine
 
-	def herb(file)
+	def herb(file, context)
 		text = File.read file
 		text = convert text
-		execute text
+		execute(text, context)
 	end
 
 	private
@@ -17,7 +17,7 @@ module TemplatingEngine
 		  .+ "\"\nreturn output"
 	end
 
-	def execute string
+	def execute(string, context)
 		eval(string)
 	end
 
