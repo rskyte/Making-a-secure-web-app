@@ -36,11 +36,13 @@ feature("authtoken encryption") do
   # 	expect(auth_token_value).to eq()
   # end
 
-
-  scenario("authtokens are not stored in database") do
+  scenario("Original authentication keys are not stored in the database") do
     sign_up()
-    user =User.find_first({"username" => "testuser"})
-    
-    expect(user.authhash).not_to eq(token)
+    sleep(60)
+    user = User.find_first({"username" => "testuser"})
+    authkey = page.driver.browser.manage.cookie_named('auth_token')[:value]
+    p authkey
+    expect(user.authhash).not_to eq(authkey)
   end
+
 end

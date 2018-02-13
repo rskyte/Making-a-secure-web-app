@@ -90,15 +90,14 @@ class App
   end
 
   def login user, params
-    params[:cookie] = "user-id=#{cookie_enc(user.id)}; path=/"
+    params[:cookie] = "user-id=#{user.id}#{generate_auth_token}; path=/"
     params
   end
 
   def current_user request
     if request.has_cookie?
-      User.all.select { |user|
-        cookie_enc(user.id) == request.get_cookie("user-id")
-      }[0]
+      user = User.find_first("id" => request.get_cookie("user-id")[0])
+      return user.authhash == enc(request.get_cookie("user-id")[1..-1]) ? user : nil
     end
     # User.find_first({"id" => request.get_cookie("user-id")}) if request.has_cookie?
   end
