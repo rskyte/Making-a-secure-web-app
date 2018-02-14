@@ -10,6 +10,8 @@ Capybara.default_driver = :selenium
 Capybara.app_host = 'http://localhost:3001'
 
 RSpec.configure do |config|
+	config.filter_run_excluding :ignore => true
+
 	config.around(:each) do |example|
 		example.run
 		DBConnect.access_database('truncate table users cascade;')

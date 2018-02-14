@@ -1,5 +1,5 @@
 require_relative '../../app/models/post'
-require_relative '../../app/models/post'
+require_relative '../../app/models/user'
 feature("SQL injection") do
   scenario("malicious entity tries to edit database") do
   	sign_up()
