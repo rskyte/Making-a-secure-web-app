@@ -31,6 +31,6 @@ https://localhost:3000
 ```
 
 #### Acknowledgements
-https://www.owasp.org/index.php/OWASP_Top_Ten_Cheat_Sheet
-https://arstechnica.com/tech-policy/2011/02/anonymous-speaks-the-inside-story-of-the-hbgary-hack/
-https://hackthissite.org
+- https://www.owasp.org/index.php/OWASP_Top_Ten_Cheat_Sheet
+- https://arstechnica.com/tech-policy/2011/02/anonymous-speaks-the-inside-story-of-the-hbgary-hack/
+- https://hackthissite.org
