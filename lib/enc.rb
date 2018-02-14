@@ -19,6 +19,10 @@ module Enc
 	  }.join
 	end
 
+	def generate_auth_token
+		Array.new(20).map{(rand(96)+33).chr}.join
+	end
+
 	def cookie_enc input_int
 		srand(input_int.to_i)
 		nu = rand(2 ** 512)

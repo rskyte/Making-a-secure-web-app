@@ -22,13 +22,16 @@ displayPosts = function(data){
 
 function postPost() {
   var text = document.getElementById("postinfo").value
-  var userCookie = document.cookie.split("; ")[0]
-  var userId = userCookie.split("=")[1];
+
   document.getElementById("postinfo").value = ""
   var xhttp = new XMLHttpRequest();
   xhttp.open("POST", "/posts", true);
-  send = function(xhttp, userId, text) { xhttp.send("user-id=" + userId + "&post-content=" + text) };
-  setTimeout( send(xhttp, userId, text), 500);
+  console.log(text)
+  send = function() { 
+    console.log("sending " + text)
+    xhttp.send("post-content=" + text) 
+  };
+  setTimeout( send(), 500);
   loadPosts(displayPosts)
 }
 

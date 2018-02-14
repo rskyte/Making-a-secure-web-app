@@ -4,6 +4,7 @@ class Request
   attr_reader :text_arr, :hash, :params
 
   def initialize text
+
     @text_arr = text.split("\r\n")
     @hash = Hash.new()
     @params = Hash.new()
@@ -28,7 +29,7 @@ class Request
 
   def get_cookie(key)
     return if !hash["Cookie"]
-    cookie_hash = hash["Cookie"].split("; ").map{|cookie| cookie.split("=")}.to_h
+    cookie_hash = hash["Cookie"].split("; ").map{|cookie| cookie.split("=", 2)}.to_h
     cookie_hash[key]
   end
 
@@ -51,8 +52,10 @@ class Request
   end
 
   def create_params_hash()
+    p 'post request received, creating params:'
     if hash["body"]
       param_arr = hash()["body"].split("&")
+      p param_arr
       param_arr.each { |item|
         key, value = item.split("=")
         params[key] = value

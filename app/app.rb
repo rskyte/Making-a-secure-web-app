@@ -48,6 +48,7 @@ class App
   end
 
   def post_posts request
+    # p request.get_param("post-content")
     request = process_request request
     post = Post.create("content" => request.get_param("post-content"),
                        "user_id" => current_user(request).id)
@@ -94,15 +95,18 @@ class App
   end
 
   def login user, params
-    params[:cookie] = "user-id=#{cookie_enc(user.id)}; path=/"
-    params
+    authtoken = generate_auth_token
+    params[:cookie] = "user-id=#{user.id}-#{authtoken}; path=/"
+    user.authhash = enc(authtoken)
+    user.save
+    return params
   end
 
   def current_user request
     if request.has_cookie?
-      User.all.select { |user|
-        cookie_enc(user.id) == request.get_cookie("user-id")
-      }[0]
+      id, authtoken = request.get_cookie("user-id").split("-",2)
+      user = User.find_first({"id" => id})
+      return (user.authhash == enc(authtoken)) ? user : nil
     end
     # User.find_first({"id" => request.get_cookie("user-id")}) if request.has_cookie?
   end
