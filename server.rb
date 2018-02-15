@@ -23,6 +23,7 @@ class Server
           request = Request.new(socket.recv(4096))
           # pp request
           request.generate_hashes
+          p request.get_cookie('user-id')
           # resource = request.get_location
           res = middleware.get_response(request)
           socket.print(res.build)
