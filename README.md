@@ -44,11 +44,11 @@ $ ruby server.db
 https://localhost:3000
 ```
 
-What you can see in Scribble!
+What you should see
 
 ![sign_in_page](/public/Sign_In.png?raw=true)
 
-![signing_up_failure](/public/Sign_Up_Issues.png?raw=true)
+Check the posts
 
 ![posts_page](/public/Posts.png?raw=true)
 
