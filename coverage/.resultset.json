@@ -163,7 +163,6 @@
       ],
       "/home/james/Makers/final-project/final/Making-a-secure-web-app/spec/features/posting_spec.rb": [
         1,
-        null,
         1,
         1,
         1,
@@ -178,13 +177,11 @@
         1,
         1,
         1,
-        null,
         null,
         null
       ],
       "/home/james/Makers/final-project/final/Making-a-secure-web-app/spec/features/routing_spec.rb": [
         1,
-        null,
         1,
         1,
         1,
@@ -235,12 +232,10 @@
       ],
       "/home/james/Makers/final-project/final/Making-a-secure-web-app/spec/features/user_sign_out_spec.rb": [
         1,
-        null,
         1,
         1,
         1,
         1,
-        null,
         null,
         null
       ],
@@ -458,6 +453,6 @@
         null
       ]
     },
-    "timestamp": 1518698743
+    "timestamp": 1518699495
   }
 }
