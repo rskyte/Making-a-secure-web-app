@@ -15,12 +15,12 @@ class User
   end
 
   def self.create(params)
-  	params["password"] = enc(params["password"]) #comment me out to prevent password hashing
-  	super(params)
+    params["password"] = enc(params["password"]) #comment me out to prevent password hashing
+    super(params)
   end
 
   def authorize(password)
-  	return @password == enc(password) #comment me out to allow authentication if password hashing is off 
+    return @password == enc(password) #comment me out to allow authentication if password hashing is off
     return @password == password
   end
 
