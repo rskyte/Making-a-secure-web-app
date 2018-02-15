@@ -19,11 +19,11 @@ SimpleCov.start do
 end
 
 RSpec.configure do |config|
-	config.filter_run_excluding :ignore => true
+  config.filter_run_excluding :ignore => true
 
-	config.around(:each) do |example|
-		example.run
-		DBConnect.access_database('truncate table users cascade;')
-		DBConnect.access_database('truncate table posts cascade;')
-	end
+  config.around(:each) do |example|
+	example.run
+	DBConnect.access_database('truncate table users cascade;')
+	DBConnect.access_database('truncate table posts cascade;')
+  end
 end
