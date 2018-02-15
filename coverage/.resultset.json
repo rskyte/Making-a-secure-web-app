@@ -197,7 +197,6 @@
       ],
       "/home/james/Makers/final-project/final/Making-a-secure-web-app/spec/features/user_sign_in_spec.rb": [
         1,
-        null,
         1,
         1,
         1,
@@ -226,7 +225,6 @@
         1,
         1,
         1,
-        null,
         null,
         null
       ],
@@ -241,7 +239,6 @@
       ],
       "/home/james/Makers/final-project/final/Making-a-secure-web-app/spec/features/user_sign_up_spec.rb": [
         1,
-        null,
         1,
         1,
         1,
@@ -282,7 +279,6 @@
         1,
         1,
         1,
-        null,
         null,
         null
       ],
@@ -448,6 +444,6 @@
         null
       ]
     },
-    "timestamp": 1518703811
+    "timestamp": 1518704710
   }
 }
