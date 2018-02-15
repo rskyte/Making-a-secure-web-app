@@ -8,6 +8,7 @@ class Request
     @text_arr = text.split("\r\n")
     @hash = Hash.new()
     @params = Hash.new()
+    p text
   end
 
   def generate_hashes
@@ -39,7 +40,7 @@ class Request
 
   private
 
-  def create_hash()
+  def create_hash() #returns nil with a colon in post
     hash()['method'], @hash['location'] = text_arr.shift().split(" ")
     text_arr().each do |item|
       key, value = item.split(":")
