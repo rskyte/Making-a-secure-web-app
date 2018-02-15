@@ -14,28 +14,28 @@ module DBModel
 
   def save
     data = instance_variables[1..-1]
-      .map{ |var| extract_attribute_to_string(var) }.join(", ")
+      .map { |var| extract_attribute_to_string(var) }.join(', ')
     DBConnect.access_database("update #{self.class.tablename} set #{data} where id = #{id};")
   end
 
   def get_relations(relation_name)
     class_name = eval(relation_name)
-    class_name.find_all({"#{self.class.name.downcase}id" => id})
+    class_name.find_all({ "#{self.class.name.downcase}id" => id })
   end
 
-private
-  def extract_attribute_to_string attribute
+  private
+
+  def extract_attribute_to_string(attribute)
     var = attribute.to_s[1..-1].to_sym
     value = method(var).call
     "#{var} = #{dbformat(value)}"
   end
 
   def dbformat(param)
-    (param.is_a?(String)) ? "'#{param}'" : param.to_s
+    param.is_a?(String) ? "'#{param}'" : param.to_s
   end
 
 end
-
 
 module DBModelClass
 
@@ -47,24 +47,24 @@ module DBModelClass
     rescue
       return
     end
-    return self.find_first(params)
+    find_first(params)
   end
 
   def find_first(params)
     DBConnect.access_database("select * from #{tablename} where #{query(params)};") do |result|
-      result[0] ? self.new(result[0]) : nil
+      result[0] ? new(result[0]) : nil
     end
   end
 
   def find_all(params)
     DBConnect.access_database("select * from #{tablename} where #{query(params)};") do |result|
-      result.map{ |record| self.new(record) }
+      result.map { |record| new(record) }
     end
   end
 
   def all
     DBConnect.access_database("select * from #{tablename};") do |result|
-      result.map{ |record| self.new(record) }
+      result.map { |record| new(record) }
     end
   end
 
@@ -73,21 +73,22 @@ module DBModelClass
   end
 
   def tablename
-    self.to_s.downcase + "s"
+    to_s.downcase + 's'
   end
 
-private
+  private
+
   def dbformat(param)
-    (param.is_a?(String)) ? "'#{param}'" : param.to_s
+    param.is_a?(String) ? "'#{param}'" : param.to_s
   end
 
-  def query params
-    params.map{ |key, value| "#{key} = #{dbformat(value)}"}.join(" and ")
+  def query(params)
+    params.map { |key, value| "#{key} = #{dbformat(value)}" }.join(' and ')
   end
 
   def separate_params(params)
-    keys = params.map{ |key, value| key.to_s }.join(',')
-    data = params.map{ |key, value| dbformat(value) }
+    keys = params.map { |key, _value| key.to_s }.join(',')
+    data = params.map { |_key, value| dbformat(value) }.join(',')
     yield(keys, data)
   end
 

@@ -68,11 +68,9 @@
         null,
         null,
         1,
-        null,
         11,
         null,
         1,
-        null,
         1,
         1,
         1,
@@ -82,7 +80,6 @@
         null,
         null,
         1,
-        null,
         1,
         1,
         1,
@@ -163,7 +160,6 @@
       ],
       "/Users/rhyskyte/Code/ruby/Making-a-secure-web-app/spec/features/posting_spec.rb": [
         1,
-        null,
         1,
         1,
         0,
@@ -178,13 +174,11 @@
         0,
         0,
         0,
-        null,
         null,
         null
       ],
       "/Users/rhyskyte/Code/ruby/Making-a-secure-web-app/spec/features/routing_spec.rb": [
         1,
-        null,
         1,
         0,
         0,
@@ -193,14 +187,21 @@
         null,
         1,
         1,
+<<<<<<< HEAD
         0,
+=======
+        1,
+>>>>>>> 758695c468e305f6b9c6022acbbc440393554bdf
         0,
         null,
         null
       ],
       "/Users/rhyskyte/Code/ruby/Making-a-secure-web-app/spec/features/user_sign_in_spec.rb": [
         1,
+<<<<<<< HEAD
         null,
+=======
+>>>>>>> 758695c468e305f6b9c6022acbbc440393554bdf
         1,
         0,
         0,
@@ -229,24 +230,36 @@
         0,
         0,
         0,
+<<<<<<< HEAD
         null,
+=======
+>>>>>>> 758695c468e305f6b9c6022acbbc440393554bdf
         null,
         null
       ],
       "/Users/rhyskyte/Code/ruby/Making-a-secure-web-app/spec/features/user_sign_out_spec.rb": [
         1,
+<<<<<<< HEAD
         null,
+=======
+>>>>>>> 758695c468e305f6b9c6022acbbc440393554bdf
         1,
         0,
         0,
         0,
+<<<<<<< HEAD
         null,
+=======
+>>>>>>> 758695c468e305f6b9c6022acbbc440393554bdf
         null,
         null
       ],
       "/Users/rhyskyte/Code/ruby/Making-a-secure-web-app/spec/features/user_sign_up_spec.rb": [
         1,
+<<<<<<< HEAD
         null,
+=======
+>>>>>>> 758695c468e305f6b9c6022acbbc440393554bdf
         1,
         0,
         0,
@@ -287,11 +300,18 @@
         0,
         0,
         0,
+<<<<<<< HEAD
         null,
         null,
         null
       ],
       "/Users/rhyskyte/Code/ruby/Making-a-secure-web-app/spec/security/security_spec.rb": [
+=======
+        null,
+        null
+      ],
+      "/home/james/Makers/final-project/final/Making-a-secure-web-app/spec/security/security_spec.rb": [
+>>>>>>> 758695c468e305f6b9c6022acbbc440393554bdf
         1,
         1,
         1,
@@ -357,15 +377,34 @@
       ],
       "/Users/rhyskyte/Code/ruby/Making-a-secure-web-app/spec/server/middleware_spec.rb": [
         1,
+<<<<<<< HEAD
+        null,
+=======
+>>>>>>> 758695c468e305f6b9c6022acbbc440393554bdf
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+<<<<<<< HEAD
+        1,
+        1,
+        null,
+=======
+>>>>>>> 758695c468e305f6b9c6022acbbc440393554bdf
+        1,
+        0,
+        0,
+        null,
         null,
         1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
+<<<<<<< HEAD
+        0,
+        0,
+        null,
+=======
+>>>>>>> 758695c468e305f6b9c6022acbbc440393554bdf
         null,
         1,
         0,
@@ -380,13 +419,11 @@
         1,
         0,
         0,
-        null,
         null,
         null
       ],
       "/Users/rhyskyte/Code/ruby/Making-a-secure-web-app/spec/server/request_spec.rb": [
         1,
-        null,
         1,
         0,
         0,
@@ -421,12 +458,18 @@
       ],
       "/Users/rhyskyte/Code/ruby/Making-a-secure-web-app/spec/server/response_spec.rb": [
         1,
+<<<<<<< HEAD
         null,
+=======
+>>>>>>> 758695c468e305f6b9c6022acbbc440393554bdf
         1,
         1,
         0,
         0,
+<<<<<<< HEAD
         null,
+=======
+>>>>>>> 758695c468e305f6b9c6022acbbc440393554bdf
         null,
         null,
         null
@@ -458,6 +501,10 @@
         null
       ]
     },
+<<<<<<< HEAD
     "timestamp": 1518704436
+=======
+    "timestamp": 1518705287
+>>>>>>> 758695c468e305f6b9c6022acbbc440393554bdf
   }
 }
