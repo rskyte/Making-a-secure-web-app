@@ -25,7 +25,7 @@ module DBModel
 
   private
 
-  def extract_attribute_to_string attribute
+  def extract_attribute_to_string(attribute)
     var = attribute.to_s[1..-1].to_sym
     value = method(var).call
     "#{var} = #{dbformat(value)}"

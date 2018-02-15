@@ -8,12 +8,12 @@ module TemplatingEngine
 
   private
 
-  def convert string
-    ("output = \"" + string.gsub("\"","'"))
+  def convert(string)
+    ("output = \"" + string.tr("\"", "'"))
       .delete("\n")
-      .gsub("~%=", "\"\noutput +=")
-      .gsub("~%", "\"\n")
-      .gsub("%~", "\noutput += \"")
+      .gsub('~%=', "\"\noutput +=")
+      .gsub('~%', "\"\n")
+      .gsub('%~', "\noutput += \"")
       .+ "\"\nreturn output"
   end
 
