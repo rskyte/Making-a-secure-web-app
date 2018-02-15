@@ -1,3 +1,6 @@
+[![License: CC0-1.0](https://img.shields.io/badge/License-CC0%201.0-lightgrey.svg)]
+(http://creativecommons.org/publicdomain/zero/1.0/)
+
 # Making-a-secure-web-app
 The final project (undertaken during the last 2 weeks) of the Makers Academy course. The aim of this project was to gain an understanding in cyber security. A simple web app was developed (a basic twitter clone) with a test driven approach using few libraries and no frameworks. This was to bypass the inherent security features implemented by well developed libraries/frameworks, allowing the app to be used as an environment to discover, exploit and document various security vulnerabilities. Subsequently this knowledge was used to develop suitable countermeasures.
 
