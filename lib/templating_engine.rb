@@ -1,24 +1,24 @@
 module TemplatingEngine
 
-	def herb(file, context)
-		text = File.read file
-		text = convert text
-		execute(text, context)
-	end
+  def herb(file, context)
+    text = File.read file
+    text = convert text
+    execute(text, context)
+  end
 
-	private
+  private
 
-	def convert string
-		("output = \"" + string.gsub("\"","'"))
-			.delete("\n")
-			.gsub("~%=", "\"\noutput +=")
-		  .gsub("~%", "\"\n")
-		  .gsub("%~", "\noutput += \"")
-		  .+ "\"\nreturn output"
-	end
+  def convert string
+    ("output = \"" + string.gsub("\"","'"))
+      .delete("\n")
+      .gsub("~%=", "\"\noutput +=")
+      .gsub("~%", "\"\n")
+      .gsub("%~", "\noutput += \"")
+      .+ "\"\nreturn output"
+  end
 
-	def execute(string, context)
-		eval(string)
-	end
+  def execute(string, context)
+    eval(string)
+  end
 
 end
