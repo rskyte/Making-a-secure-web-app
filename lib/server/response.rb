@@ -7,8 +7,7 @@ class Response
 
   def build
     res =  "HTTP/1.1 #{@params[:code]}\r\n" +
-           "Connection: close\r\n" # +
-           # "Content-type: text/html\r\n"
+           "Connection: close\r\n"
     res += "Location: #{@params[:location]}\r\n" if @params[:location]
     res += "Set-Cookie: #{@params[:cookie]}\r\n" if @params[:cookie]
     res + "\r\n" + @params[:text]

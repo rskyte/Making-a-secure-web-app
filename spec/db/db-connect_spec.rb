@@ -1,7 +1,5 @@
 describe 'accessing the database' do
-
   describe '#access_database' do
-
     it 'can input and read from the database' do
       DBConnect.access_database("insert into users(username, password) values('Test User', 'password')")
       DBConnect.access_database("insert into users(username, password) values('Test User2', 'password')")

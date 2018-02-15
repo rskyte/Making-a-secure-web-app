@@ -27,7 +27,7 @@ class Request
   end
 
   def get_cookie(key)
-    return if !hash['Cookie']
+    return unless hash['Cookie']
     cookie_hash = hash['Cookie'].split('; ').map { |cookie| cookie.split('=', 2) }.to_h
     cookie_hash[key]
   end
@@ -54,10 +54,10 @@ class Request
     # p 'post request received, creating params:'
     if hash['body']
       param_arr = hash['body'].split('&')
-      param_arr.each { |item|
+      param_arr.each do |item|
         key, value = item.split('=')
         params[key] = value
-      }
+      end
     end
   end
 
