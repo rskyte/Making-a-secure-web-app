@@ -19,11 +19,9 @@ class TestRelationDBModel
 end
 
 describe DBModel do
-
   subject(:testdbmodel) { TestDBModel }
 
   describe '#create' do
-
     it 'can input to the database' do
       DBConnect.stub(access_database: nil)
       expect(DBConnect).to receive(:access_database)
@@ -33,7 +31,6 @@ describe DBModel do
   end
 
   describe 'reading from db' do
-
     describe '#find_first' do
       it 'can find a specific record in database' do
         expect(DBConnect).to receive(:access_database)
