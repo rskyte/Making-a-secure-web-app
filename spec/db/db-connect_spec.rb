@@ -1,8 +1,8 @@
-describe "accessing the database" do
+describe 'accessing the database' do
 
-	describe "#access_database" do
+	describe '#access_database' do
 
-	  it "can input and read from the database" do
+	  it 'can input and read from the database' do
 	  	DBConnect.access_database("insert into users(username, password) values('Test User', 'password')")
 	  	DBConnect.access_database("insert into users(username, password) values('Test User2', 'password')")
 	  	DBConnect.access_database("select * from users; select * from users;") do |users|
@@ -12,7 +12,7 @@ describe "accessing the database" do
 	  	end
 	  end
 
-		it "can update database entries" do
+		it 'can update database entries' do
 			DBConnect.access_database("insert into users(username, password) values('Test User', 'password')")
 			DBConnect.access_database("update users set username = 'Test User modified' where username = 'Test User'")
 			DBConnect.access_database("select * from users; select * from users;") do |users|
