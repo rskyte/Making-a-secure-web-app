@@ -50,6 +50,10 @@ The main page
 
 ![posts_page](/public/Posts.png?raw=true)
 
+Links to flow diagrams:
+[request/response cycle](/public/high_lvl_req_res_lifecycle.png),
+[control flow diagram](/public/req_res_lifecycle_activity.png)
+
 ---
 
 ### Running the tests
