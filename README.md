@@ -45,6 +45,7 @@ https://localhost:3000
 ```
 
 What you should see
+![sign_in_page](/public/user_experience.gif?raw=true)
 
 ![sign_in_page](/public/Sign_In.png?raw=true)
 
