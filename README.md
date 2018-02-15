@@ -44,13 +44,13 @@ $ ruby server.db
 https://localhost:3000
 ```
 
-What you should see!
+What you can see in Scribble!
 
-![sign_in_page](https://github.com/LarsFin/Making-a-secure-web-app/tree/master/public/Sign_In.png)
+![sign_in_page](/public/Sign_In.png?raw=true)
 
-![signing_up_failure](https://github.com/LarsFin/Making-a-secure-web-app/tree/master/public/Sign_Up_Issues.png)
+![signing_up_failure](/public/Sign_Up_Issues.png?raw=true)
 
-![posts_page](https://github.com/LarsFin/Making-a-secure-web-app/tree/master/public/Posts.png)
+![posts_page](/public/Posts.png?raw=true)
 
 ---
 
