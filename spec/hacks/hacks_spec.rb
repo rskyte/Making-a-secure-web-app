@@ -1,7 +1,7 @@
 require_relative '../../app/models/post'
 require_relative '../../app/models/user'
 
-feature "injection in posts form" do 
+feature "injection in posts form", :ignore => true do 
   scenario "truncating post table" do
     sign_up()
     sign_in()
@@ -11,7 +11,7 @@ feature "injection in posts form" do
     make_post("HACK', 1); truncate table posts; --")
     expect(Post.all.empty?).to eq true
   end
-  scenario "posting everyones' passwords" do
+  scenario "posting everyones' passwords", :ignore => true do
     sign_up(username: 'user1', password: "appleapple", password_conf: "appleapple")   
     sign_up(username: 'user2', password: "bananabanana", password_conf: "bananabanana")
     sign_up(username: 'user3', password: "lemonlemon", password_conf: "lemonlemon")
@@ -28,7 +28,7 @@ feature "injection in posts form" do
   end
 end
 
-feature "injection in post to /users" do
+feature "injection in post to /users", :ignore => true do
   scenario "truncating post table" do
     sign_up
     sign_in
@@ -40,7 +40,7 @@ feature "injection in post to /users" do
     expect(Post.all.empty?).to eq true
   end
 end
-feature "injection in post to /users/signin" do
+feature "injection in post to /users/signin", :ignore => true do
   scenario "truncating post table" do
     sign_up
     sign_in

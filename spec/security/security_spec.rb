@@ -6,7 +6,7 @@ feature("SQL injection") do
   	sign_in()
   	visit '/posts'
   	make_post("HACK', 1); truncate table posts; --")
-  	expect(Post.all.empty?).to eq true
+  	expect(Post.all.empty?).to eq false
   end
 end
 
