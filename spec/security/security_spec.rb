@@ -36,14 +36,14 @@ end
 feature('password encryption') do
   scenario('passwords are not stored in database') do
     sign_up()
-    expect(User.find_first({'username' => 'testuser'}).password).not_to eq('password')
+    expect(User.find_first('username' => 'testuser').password).not_to eq('password')
   end
 end
 
 feature 'Cookie Manipulation' do
   scenario 'cookies cannot be hijacked (via simple javascript manipulation)' do
     sign_up(username: 'victim')
-    id = User.find_first({'username' => 'victim'}).id
+    id = User.find_first('username' => 'victim').id
     click_link 'Sign Out'
     sign_up(username: 'hijacker')
     page.execute_script("document.cookie = 'user-id=#{id}'")
@@ -55,7 +55,7 @@ end
 feature('authtoken encryption') do
   scenario('Original authentication keys are not stored in the database') do
     sign_up()
-    user = User.find_first({'username' => 'testuser'})
+    user = User.find_first('username' => 'testuser')
     authkey = page.driver.browser.manage.cookie_named('user-id')[:value].split('-', 2)[0]
     expect(user.authhash).not_to eq(authkey)
   end
