@@ -1,7 +1,5 @@
 # Making-a-secure-web-app
-The final project (undertaken during the last 2 weeks) of the Makers Academy course.
-The aim of this project is to gain insight and understanding in cyber security.
-A simple web app was created (a basic twitter clone) without the use of frameworks and little use of libraries. This app was then used to exploit and document various security flaws and, importantly, their countermeasures.
+The final project (undertaken during the last 2 weeks) of the Makers Academy course. The aim of this project was to gain an understanding in cyber security. A simple web app was developed (a basic twitter clone) with a test driven approach using few libraries and no frameworks. This was to bypass the inherent security features implemented by well developed libraries/frameworks, allowing the app to be used as an environment to discover, exploit and document various security vulnerabilities. Subsequently this knowledge was used to develop suitable countermeasures.
 
 ---
 
@@ -48,7 +46,7 @@ What you should see
 
 ![sign_in_page](/public/Sign_In.png?raw=true)
 
-Check the posts
+The main page
 
 ![posts_page](/public/Posts.png?raw=true)
 
@@ -56,23 +54,25 @@ Check the posts
 
 ### Running the tests
 
-Tested in rspec with capybara using selenium webdriver. 100% test coverage evaluated by SimpleCov.
+Tested in rspec with capybara using selenium webdriver. 100% test coverage (evaluated by SimpleCov).
 
 Test suite consists of:
 - regression tests (for known vulnerabilities)
 - unit tests
 - feature tests
 
+*all tests used to expose vulnerabilities do not run but are stored in spec/hacks folder.*
+
 Running tests:
 ```
 $ rspec
 ```
 
-*all tests used to expose vulnerabilities do not run but are stored in hacks folder.*
-
 ---
 
 #### Acknowledgements
+
+A few sites that gave us insight into well-known hacking techniques.
 - https://www.owasp.org/index.php/OWASP_Top_Ten_Cheat_Sheet
 - https://arstechnica.com/tech-policy/2011/02/anonymous-speaks-the-inside-story-of-the-hbgary-hack/
 - https://hackthissite.org
