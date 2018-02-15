@@ -42,7 +42,7 @@ module DBModelClass
   def create(params)
     begin
       separate_params(params) do |keys, data|
-        DBConnect.access_database("insert into #{tablename}(#{keys}) values(#{data});")
+        DBConnect.access_database("insert into #{tablename}(#{keys}) values(#{generate_query_placeholders(data.length)});", data)
       end
     rescue
       return
@@ -87,7 +87,14 @@ private
 
   def separate_params(params)
     keys = params.map{ |key, value| key.to_s }.join(',')
-    data = params.map{ |key, value| dbformat(value) }.join(',')
+    data = params.map{ |key, value| dbformat(value) }
     yield(keys, data)
   end
+
+  def generate_query_placeholders(num)
+    string = ''
+    num.times { |i| string += "$#{i}" }
+    string
+  end
+
 end

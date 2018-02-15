@@ -1,12 +1,19 @@
 require 'pg'
 
 class DBConnect
-  def self.access_database command, &block
-    # p command
+  def self.access_database command, data = nil, &block
+    p command
     connection = PG.connect(dbname: "hackapp_#{ENV['DB_ENV']}")
-    result =connection.exec(command) do |result|
+    connection.prepare('statement', command)
+    if data
+    result = connection.exec_prepared('statement', data) do |result|
       yield(result) if block
     end
+    else
+    result = connection.exec_prepared('statement') do |result|
+      yield(result) if block
+    end
+  end
     connection.close
     return result
   end
