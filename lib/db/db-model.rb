@@ -42,7 +42,7 @@ module DBModelClass
   def create(params)
     begin
       separate_params(params) do |keys, data|
-        DBConnect.access_database("insert into #{tablename}(#{keys}) values(#{generate_query_placeholders(data.length)});", data)
+        DBConnect.access_database("insert into #{tablename}(#{keys}) values(#{data});")
       end
     rescue
       return
