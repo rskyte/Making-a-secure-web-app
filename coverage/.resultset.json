@@ -352,7 +352,6 @@
       ],
       "/home/james/Makers/final-project/final/Making-a-secure-web-app/spec/server/middleware_spec.rb": [
         1,
-        null,
         2,
         2,
         2,
@@ -375,7 +374,6 @@
         1,
         1,
         1,
-        null,
         null,
         null
       ],
@@ -416,12 +414,10 @@
       ],
       "/home/james/Makers/final-project/final/Making-a-secure-web-app/spec/server/response_spec.rb": [
         1,
-        null,
         1,
         1,
         1,
         1,
-        null,
         null,
         null,
         null
@@ -453,6 +449,6 @@
         null
       ]
     },
-    "timestamp": 1518699495
+    "timestamp": 1518700149
   }
 }
