@@ -45,13 +45,7 @@ https://localhost:3000
 ```
 
 What you should see
-![sign_in_page](/public/user_experience.gif?raw=true)
-
-![sign_in_page](/public/Sign_In.png?raw=true)
-
-The main page
-
-![posts_page](/public/Posts.png?raw=true)
+![user_experience](/public/user_experience.gif?raw=true)
 
 Links to flow diagrams:
 [request/response cycle](/public/high_lvl_req_res_lifecycle.png),
