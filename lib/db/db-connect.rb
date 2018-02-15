@@ -7,11 +7,6 @@ class DBConnect
     result = connection.exec(command) do |result|
       yield(result) if block
     end
-    else
-    result = connection.exec_prepared('statement') do |result|
-      yield(result) if block
-    end
-  end
     connection.close
     result
   end
