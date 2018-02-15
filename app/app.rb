@@ -96,18 +96,23 @@ class App
 
   def login user, params
     authtoken = generate_auth_token
-    params[:cookie] = "user-id=#{user.id}-#{authtoken}; path=/"
     user.authhash = enc(authtoken)
     user.save
+    params[:cookie] = "user-id=#{user.id}-#{authtoken}; path=/" #comment me out to allow logging in without auth tokens
+    # params[:cookie] = "user-id=#{user.id}" #and comment me in
     return params
   end
 
   def current_user request
-    if request.has_cookie?
+    authenticate_token request #comment me out to allow logging in without auth tokens
+    # User.find_first({"id" => request.get_cookie("user-id")}) if request.has_cookie? #and comment me in
+  end
+
+  def authenticate_token request
+     if request.has_cookie?
       id, authtoken = request.get_cookie("user-id").split("-",2)
       user = User.find_first({"id" => id})
       return (user.authhash == enc(authtoken)) ? user : nil
     end
-    # User.find_first({"id" => request.get_cookie("user-id")}) if request.has_cookie?
   end
 end
