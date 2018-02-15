@@ -51,7 +51,7 @@ class Request
   end
 
   def create_params_hash
-    p 'post request received, creating params:'
+    # p 'post request received, creating params:'
     if hash['body']
       param_arr = hash['body'].split('&')
       param_arr.each { |item|
