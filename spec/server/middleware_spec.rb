@@ -9,17 +9,17 @@ describe Middleware do
   subject(:middleware) { described_class.new app_class, response_class }
 
   it 'should build a suitable name for a request given' do
-    expect(response_class).to receive(:new).with({ text: 'Test passed' })
+    expect(response_class).to receive(:new).with(text: 'Test passed')
     subject.get_response(request)
   end
 
   it 'should handle multiple slashes' do
-    expect(response_class).to receive(:new).with({ text: 'Test 2 passed' })
+    expect(response_class).to receive(:new).with(text: 'Test 2 passed')
     subject.get_response(request2)
   end
 
   it 'correctly returns 404 errors' do
-    expect(response_class).to receive(:new).with({ text: '<h1>404 Error</h1><br>Page not found', code: '404 Not Found' })
+    expect(response_class).to receive(:new).with(text: '<h1>404 Error</h1><br>Page not found', code: '404 Not Found')
     subject.get_response(request3)
   end
 end
