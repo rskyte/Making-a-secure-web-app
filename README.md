@@ -3,6 +3,20 @@ The final project (undertaken during the last 2 weeks) of the Makers Academy cou
 The aim of this project is to gain insight and understanding in cyber security.
 A simple web app was created (a basic twitter clone) without the use of frameworks and little use of libraries. This app was then used to exploit and document various security flaws and, importantly, their countermeasures.
 
+### Prerequisites
+
+- ruby v2.4.1
+
+  get latest version here: https://www.ruby-lang.org/en/downloads/
+
+- PostgreSQL v10.1
+
+  get here: https://gist.github.com/sgnl/609557ebacd3378f3b72
+
+- Mozilla Firefox (for capybara tests)
+
+  get latest version here: https://www.mozilla.org/en-GB/firefox/new/
+
 ### Setup
 Getting the repo:
 ```
@@ -12,13 +26,9 @@ $ cd Making-a-secure-web-app
 
 Configuring environment:
 ```
+$ gem install bundler
 $ ruby db-reset.rb
 $ bundle install
-```
-
-Running tests:
-```
-$ rspec
 ```
 
 Running app:
@@ -29,6 +39,22 @@ $ ruby server.db
 ```
 https://localhost:3000
 ```
+
+### Running the tests
+
+Tested in rspec with capybara using selenium webdriver. 100% test coverage evaluated by SimpleCov.
+
+Test suite consists of:
+- regression tests (for known vulnerabilities)
+- unit tests
+- feature tests
+
+Running tests:
+```
+$ rspec
+```
+
+*all tests used to expose vulnerabilities do not run but are stored in hacks folder.*
 
 #### Acknowledgements
 - https://www.owasp.org/index.php/OWASP_Top_Ten_Cheat_Sheet
