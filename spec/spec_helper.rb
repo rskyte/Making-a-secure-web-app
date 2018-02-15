@@ -15,7 +15,7 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
   [SimpleCov::Formatter::Console]
 )
 SimpleCov.start do
-  add_filter "spec/hacks/hacks_spec.rb"
+  add_filter 'spec/hacks/hacks_spec.rb'
 end
 
 RSpec.configure do |config|

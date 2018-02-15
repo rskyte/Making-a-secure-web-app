@@ -1,12 +1,12 @@
-require_relative "../lib/enc"
+require_relative '../lib/enc'
 include Enc
 
-describe "#generate_auth_token" do
-  it "should return a 20 character authentication key" do
+describe '#generate_auth_token' do
+  it 'should return a 20 character authentication key' do
   	expect(generate_auth_token.length).to eq 20
   end
   # impossible to perfectly test for randomness, this is the best we got
-  it "should be random" do
+  it 'should be random' do
   	srand(1)
 
   	twenty_tokens = Array.new(20){generate_auth_token}
