@@ -7,7 +7,7 @@ end
 
 feature 'Served files' do
   scenario 'request a public file' do
-    visit'/public/sign-in.html'
+    visit '/public/sign-in.html'
     expect(page).to have_content 'Sign In'
   end
 end

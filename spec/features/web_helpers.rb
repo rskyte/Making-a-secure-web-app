@@ -1,4 +1,4 @@
-def sign_up(username: 'testuser', password: "password", password_conf: "password")
+def sign_up(username: 'testuser', password: 'password', password_conf: 'password')
   visit '/users/new'
   fill_in 'username', with: username
   fill_in 'password', with: password
@@ -6,7 +6,7 @@ def sign_up(username: 'testuser', password: "password", password_conf: "password
   click_on 'submit'
 end
 
-def sign_in(username: 'testuser', password: "password")
+def sign_in(username: 'testuser', password: 'password')
   visit '/users/signin'
   fill_in 'username', with: username
   fill_in 'password', with: password

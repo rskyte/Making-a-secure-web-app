@@ -1,5 +1,4 @@
 feature 'User - Sign Up' do
-
   scenario 'displays a sign up page' do
     visit '/users/new'
     expect(page).to have_content 'Sign Up'
@@ -26,7 +25,7 @@ feature 'User - Sign Up' do
   end
 
   scenario 'can sign up with valid details' do
-    sign_up()
+    sign_up
     expect(page).to have_content('Signed in as testuser')
   end
 
@@ -41,5 +40,4 @@ feature 'User - Sign Up' do
     message = page.find('#username').native.attribute('validationMessage')
     expect(message).to eq 'Please fill in this field.'
   end
-
 end

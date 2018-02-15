@@ -1,14 +1,13 @@
 feature 'User - Sign In' do
-
   scenario 'can visit signin page' do
     visit '/users/signin'
     expect(page).to have_content 'Sign In'
   end
 
   scenario 'can signin to their existing account' do
-    sign_up()
+    sign_up
     click_link 'Sign Out'
-    sign_in()
+    sign_in
     expect(page).to have_content 'Signed in as testuser'
   end
 
@@ -25,9 +24,8 @@ feature 'User - Sign In' do
   end
 
   scenario 'can view the posts page if they are logged in' do
-    sign_up()
-    sign_in()
+    sign_up
+    sign_in
     expect(page).to have_content 'Sign Out'
   end
-
 end
