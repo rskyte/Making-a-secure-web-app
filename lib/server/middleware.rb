@@ -33,7 +33,7 @@ class Middleware
     method = request.get_method
     location = request.get_location.split('/').join('_')
     location = '_homepage' if location.empty?
-    controller_name =  "#{method}#{location}".downcase
+    "#{method}#{location}".downcase
   end
 
   def error404
@@ -43,18 +43,18 @@ class Middleware
   def get_response_params(method, request)
     if app.respond_to?(method)
       res = app.public_send(method, request)
-      return (res.is_a? Hash) ? res : { text: res }
+      (res.is_a? Hash) ? res : { text: res }
     else
       try_find_resource(request.get_location)
     end
   end
 
-  def list_directory(dir='.')
+  def list_directory(dir = '.')
     dir = '.' if dir == ''
     # p dir
     list = Dir.entries(dir).sort
     newlist = []
-    list.each { |item| newlist << '<a href=/#{dir}/#{item}>#{item}</a>' }
+    list.each { |item| newlist << "<a href=/#{dir}/#{item}>#{item}</a>" }
     newlist.join('<br>')
   end
 
@@ -72,5 +72,4 @@ class Middleware
   def validate_resource_path(resource)
     resource.start_with?('public') && !resource.include?('..')
   end
-
 end
